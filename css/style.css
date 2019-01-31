@@ -21,6 +21,30 @@ body{
     margin: 0 auto;
     width: 1000px;
 }
+@media (min-width: 700px) {
+    .layout {
+      width: 600px;
+    }
+}
+@media (min-width: 900px) {
+    .layout {
+      width: 800px;
+    }
+}
+@media (min-width: 1000px) {
+    .layout {
+      width: 900px;
+    }
+}
+@media (min-width: 1200px) {
+    .layout {
+      width: 1100px;
+    }
+}
+  
+#page-cover {
+    display: none;
+}
 .bg{
     position: absolute;
     z-index: -1;
