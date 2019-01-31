@@ -1,0 +1,220 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+html,body,main{height:100%;}
+body{font: 14px/1.5 Arial;}
+a{text-emphasis: none;color: #444;}
+ul,li{list-style: none;}
+/* 以上是进行的默认样式 */
+html,body,section{
+    height: 100%;       /*这里的100%就是想让内部的元素撑起外面包裹在里的元素，要撑起来的话就得逐级添加*/
+    overflow: hidden;   /*好吧这里就能将之前出现的滚动条消除了*/
+}
+body{
+    position: relative;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+.layout{
+    margin: 0 auto;
+    width: 1000px;
+}
+.bg{
+    position: absolute;
+    z-index: -1;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    top: -10px;
+    /*进行上面的设置后就会出现滚动条，看看后面怎么处理的吧*/
+    background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-136948.jpg');
+    background-size: cover;/*这一句表示的是图片自适应元素的大小*/
+    filter: blur(4px);/*这一句表示的是设置图片的模糊度*/
+}
+.bg::before{/*主要是为了让主背景图变得比较暗一点*/
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4)
+}
+main{
+    padding-top: 12vh;
+    height: calc(100% - 24vh);/*使用公式进行计算的时候需要注意保留空格*/
+}
+main::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+main .aside{
+    float: left;
+}
+main .aside > figure{
+    width: 46vh;
+    height: 46vh;
+    background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-136948.jpg');
+    background-size:cover;
+    background-position:center center;
+}
+main .aside > .actions {
+    display: flex;
+    margin-top: 4vh;
+}
+main .aside .icon {
+    flex: 1;/*这一句可以起到居中的效果*/
+    text-align: center;/*感觉加上这一句没有什么实际的用处*/
+    font-size: 5vh;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color .4s;
+    cursor: pointer;/*这句话的意思就是当鼠标箭头放到图表上的时候就变为手的箭头*/
+}
+main .aside .icon:hover{
+    color: #fff;/*鼠标浮到图标上就变色*/
+}
+main .detail{
+    margin-left: 56vh;
+    color: #fff;
+}
+main .detail .tag{
+    font-size: 2vh;
+    padding: .4em .8em;
+    background: #2e6eec;
+}
+main .detail h1{
+    font-size: 6vh;
+    margin-top: 2vh;
+}
+main .detail .icons{
+    display: flex;
+    font-size: 3vh;
+    margin-top: 12vh;
+}
+main .detail .icons li{
+    flex: 1;/*有这一句就居中了*/
+}
+main .detail .icons .icon{
+    margin-right: 1vh;/*这是设置图标有右边数字之间的间隔*/
+}
+main .area-bar{
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+}
+main .area-bar .bar{
+    position: relative;
+    flex: 1;
+    height: .8vh;
+    border-radius: .2vh;
+    background: rgba(255, 255, 255, 0.4);
+}
+main .area-bar .current-time{
+    width: 3vh;
+    font-size: 2vh;
+    margin-left: 1vh;
+}
+main .area-bar .bar-progress{
+    position: absolute;
+    height: .8vh;
+    width: 10%;/*设置的就是进度条所走的进度位置，相当于整个长度的位置*/
+    background-color: #fff;
+    border-radius: .2vh;
+    transition: width .8s;
+}
+main .author {
+    font-size: 3vh;
+    margin-top: 3vh;
+}
+main .lyric{
+    font-size: 2vh;
+    margin-top: 2vh;
+    color: rgba(255, 255, 255, 0.4);
+}
+footer{
+    height: 24vh;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px -.25vh .25vh .25vh rgba(255, 255, 255, 0.2);
+}
+footer .layout{
+    position:relative;
+}
+footer .box{
+    position: relative;
+    overflow: hidden;
+    height: 24vh;
+}
+footer ul{
+    position: absolute;
+    left: 0;
+}
+footer ul::after {
+    content:'';
+    display: block;
+    clear: both;
+}
+footer li{
+    float: left;
+    margin-top: 1vh;
+    margin: 2vh 4vh 0 4vh;
+    width: 20vh;
+    height: 20vh;
+
+    text-align: center;
+    cursor: pointer;
+}
+footer li:hover{
+    box-shadow: 0 0 .5vh .5vh rgba(255, 255, 255, 0.8);
+}
+footer li .cover{
+    height: 16vh;
+    background-size: cover;
+    background-position: center center;
+}
+footer li.active{
+    box-shadow: 0 0 .5vh .5vh rgba(255, 255, 255, 0.8);
+}
+footer h3{
+    font-size: 2vh;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1vh;
+}
+footer .icon{
+    position: absolute;
+    top: 8vh;
+    font-size: 6vh;
+    color: rgba(255, 255, 255, 0.4);
+    opacity: 0;
+    transition: all .4s;
+    cursor: pointer;
+}
+footer:hover .icon{
+    opacity: 1;
+}
+footer .icon:hover{
+    color: rgba(255, 255, 255, 0.8);
+}
+footer .icon-left{
+    left:-8vh;
+}
+footer .icon-right{
+    right: -8vh;
+}
+footer .icon-right.disable{
+    color: rgba(255, 255, 255, 0.4);
+}
+footer .icon-left.disable{
+    color: rgba(255, 255, 255, 0.4);
+}
+footer .icon-right.disable{
+    color: rgba(255, 255, 255, 0.4);
+}
+.boomText {
+    display: inline-block;
+    opacity: 0;
+}
+  
