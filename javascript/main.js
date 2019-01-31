@@ -80,7 +80,7 @@ var Footer = {
     },
     rander:function(){
         var _this = this
-        $.getJSON('http://jirenguapi.applinzi.com/fm/getChannels.php')
+        $.getJSON('//jirenguapi.applinzi.com/fm/getChannels.php')
         .done(function(ret){
             _this.renderFooter(ret.channels)
         }).fail(function(){
