@@ -19,7 +19,7 @@ body{
 }
 .layout{
     margin: 0 auto;
-    width: 1000px;
+    width: 600px;
 }
 @media (min-width: 700px) {
     .layout {
@@ -164,7 +164,7 @@ footer{
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0px -.25vh .25vh .25vh rgba(255, 255, 255, 0.2);
 }
-footer .layout{
+footer> .layout{
     position:relative;
 }
 footer .box{
@@ -184,7 +184,7 @@ footer ul::after {
 footer li{
     float: left;
     margin-top: 1vh;
-    margin: 2vh 4vh 0 4vh;
+    margin: 2vh 4vh 0vh 3vh;
     width: 20vh;
     height: 20vh;
 
@@ -215,9 +215,11 @@ footer .icon{
     opacity: 0;
     transition: all .4s;
     cursor: pointer;
+    /* 鼠标移上去之后箭头变为手指 */
 }
 footer:hover .icon{
     opacity: 1;
+    /* 当鼠标移到歌单栏处就出现上一首和下一首的按钮 */
 }
 footer .icon:hover{
     color: rgba(255, 255, 255, 0.8);
@@ -232,9 +234,6 @@ footer .icon-right.disable{
     color: rgba(255, 255, 255, 0.4);
 }
 footer .icon-left.disable{
-    color: rgba(255, 255, 255, 0.4);
-}
-footer .icon-right.disable{
     color: rgba(255, 255, 255, 0.4);
 }
 .boomText {

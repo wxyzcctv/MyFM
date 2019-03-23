@@ -7,8 +7,9 @@ var EventCenter = {
         $(document).trigger(type,data)
     }
 }
-// 上面一段没有明白什么意思
-// 应该是表示的是将一个信息进行打包，进行触发
+// 这是定义的一个时间中心，这个事件中心里面进行的主要功能有订阅事件和发布事件
+// on表示发布，fire表示订阅，各自有自己的函数进行执行，
+// on的时候进行执行事件，fire的时候进行触发事件
 
 var Footer = {
     init:function(){
@@ -35,7 +36,7 @@ var Footer = {
             let itemWidth = _this.$box.find('li').outerWidth(true)//得到每个li的宽度
             let rowCount = Math.floor(_this.$box.width()/itemWidth)//得到一个box中有多少整数个li
             if(!_this.isToEnd){
-            _this.Animation = true//只要一点击就会处于轮播就处于开始状态   
+            _this.Animation = true//只要一点击轮播就处于开始状态   
             _this.$ul.animate({
                 left:'-='+rowCount*itemWidth//向左移动整数个li
             },400,function(){
@@ -80,14 +81,16 @@ var Footer = {
     },
     rander:function(){
         var _this = this
-        $.getJSON('//jirenguapi.applinzi.com/fm/getChannels.php')
+        $.getJSON('http://api.jirengu.com/fm/getChannels.php')
         .done(function(ret){
+            // 调用这个API之后就能获取到一个数组channels，数组中包括了name，channel_id，cover_big（也就是图片链接，一张图片有大中小三种样式）
             _this.renderFooter(ret.channels)
         }).fail(function(){
             console.log('error')
         })
     },
     renderFooter:function(channels){
+        // 此处进行渲染，主要是添加HTML的方式将拿到的数据添加到页面中，对每一个数组中的对象都要添加
         var html = ''
         channels.forEach(function(channel){
             html += '<li data-channel-id='+channel.channel_id+' data-channel-name='+channel.name+'>'
@@ -109,15 +112,15 @@ var Footer = {
 var Fm = {
     init:function(){
         this.$container = $('#page-music')//设置操作的范围
-        this.audio = new Audio() //视频上面说播放是需要设置这个属性的东西，不知道是啥
-        this.audio.autoplay = true //这里说的好像是播放的状态在显示
-        
+        this.audio = new Audio()          //就是调用一个这个audio属性进行播放音乐
+        this.audio.autoplay = true        //这里说的好像是播放的状态在显示
         this.bind()
     },
     bind:function(){
         var _this = this
         _this.musicplay = true
         EventCenter.on('select-albumn',function(e,channelObj){
+            // 这里的channeId和channelName是通过事件中心的fire事件传入的data
             _this.channelId = channelObj.channelId
             _this.channelName = channelObj.channelName
             _this.loadMusic()
@@ -139,7 +142,7 @@ var Fm = {
             }
         })
         this.$container.find('.btn-next').on('click',function(){
-            //暂停选项
+            //点击下一首的时候就直接播放一首新的歌曲
             _this.loadMusic()
         })
         this.audio.addEventListener('play',function(){//监听播放事件
@@ -169,10 +172,13 @@ var Fm = {
             var lyricObj = {}
             lyric.split('\n').forEach(function(line){//此处是对歌词进行拆分，这里的歌词是时间和歌词混合在一起的列表形式
                 var times = line.match(/\d{2}:\d{2}/g)
-                var str = line.replace(/\[.+?]/g,'')
+                //获取歌词播放的时间，此处还可以获取到歌词列表中出现时间重叠的情况下的歌词
+                // 比如：[02:12.65] [01:45.12] hello word
+                var str = line.replace(/\[.+?]/g,'')  //获取歌词
                 if(Array.isArray(times)){ //如果得到的times是一个数组就进行数组列表的重新安排
                     times.forEach(function(time){
                         lyricObj[time] = str
+                        // 将得到的时间作为key将得到的歌词作为value组成一个新的数组
                     })
                 }
             })
