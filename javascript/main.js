@@ -23,7 +23,6 @@ var Footer = {
         this.Animation = false
         this.bind()
         this.rander()
-        
     },
     bind:function(){
         var _this = this
@@ -81,7 +80,7 @@ var Footer = {
     },
     rander:function(){
         var _this = this
-        $.getJSON('http://api.jirengu.com/fm/getChannels.php')
+        $.getJSON('//jirenguapi.applinzi.com/fm/getChannels.php')
         .done(function(ret){
             // 调用这个API之后就能获取到一个数组channels，数组中包括了name，channel_id，cover_big（也就是图片链接，一张图片有大中小三种样式）
             _this.renderFooter(ret.channels)

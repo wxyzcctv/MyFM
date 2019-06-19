@@ -53,7 +53,7 @@ body{
     bottom: -10px;
     top: -10px;
     /*进行上面的设置后就会出现滚动条，看看后面怎么处理的吧*/
-    background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-136948.jpg');
+    background: url('http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-middle');
     background-size: cover;/*这一句表示的是图片自适应元素的大小*/
     filter: blur(4px);/*这一句表示的是设置图片的模糊度*/
 }
@@ -81,7 +81,7 @@ main .aside{
 main .aside > figure{
     width: 46vh;
     height: 46vh;
-    background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-136948.jpg');
+    background: url('http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-middle');
     background-size:cover;
     background-position:center center;
 }
